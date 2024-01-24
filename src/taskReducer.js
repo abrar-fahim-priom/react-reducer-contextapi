@@ -1,15 +1,12 @@
-export default function taskReducer(tasks, action) {
+export default function taskReducer(draft, action) {
   if (action.type === "added") {
-    return [
-      ...tasks,
-      {
-        id: action.id,
-        text: action.text,
-        done: false,
-      },
-    ];
+    draft.push({
+      id: action.id,
+      text: action.text,
+      done: false,
+    });
   } else if (action.type === "changed") {
-    return tasks.map((t) => {
+    return draft.map((t) => {
       if (t.id == action.task.id) {
         return action.task;
       } else {
@@ -17,7 +14,7 @@ export default function taskReducer(tasks, action) {
       }
     });
   } else if (action.type === "deleted") {
-    return tasks.filter((t) => t.id !== action.id);
+    return draft.filter((t) => t.id !== action.id);
   } else {
     return `no action shooted from ${action.type}`;
   }
