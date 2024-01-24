@@ -6,13 +6,8 @@ export default function taskReducer(draft, action) {
       done: false,
     });
   } else if (action.type === "changed") {
-    return draft.map((t) => {
-      if (t.id == action.task.id) {
-        return action.task;
-      } else {
-        return t;
-      }
-    });
+    const index = draft.findIndex((t) => t.id === action.task.id);
+    draft[index] = action.task;
   } else if (action.type === "deleted") {
     return draft.filter((t) => t.id !== action.id);
   } else {
