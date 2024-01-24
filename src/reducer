@@ -1,0 +1,10 @@
+ setTasks();
+
+    ---------------
+
+    const nextTask = 
+  
+      setTasks(nextTask);
+
+    --------------------
+    setTasks(tasks.filter((t) => t.id !== taskid));
